@@ -45,4 +45,11 @@ public class TodoService {
     private boolean isValidIndex(int index){
         return index >= 0 && index < todos.size();
     }
+    public void removeStrict(int index) {
+        if (!isValidIndex(index)) {
+            throw new IndexOutOfBoundsException("삭제할 수 없는 인덱스입니다: " + index);
+        }
+        todos.remove(index);
+    }
+
 }

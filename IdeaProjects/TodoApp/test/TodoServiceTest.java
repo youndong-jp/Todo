@@ -12,7 +12,12 @@ public class TodoServiceTest {
         ArrayList<Todo> todos = new ArrayList<>();
         service = new TodoService(todos);
     }
-
+    @Test
+    public void testInvalidIndexThrowsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            service.removeStrict(0);
+        });
+    }
     @Test
     public void testAddTodo() {
         service.add("복습하기");
