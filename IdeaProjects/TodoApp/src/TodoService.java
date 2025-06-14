@@ -45,10 +45,16 @@ public class TodoService {
             System.out.println("❌ 잘못된 번호입니다.");
         }
     }
-    public void remove(int id){
-        if (isValidIndex(id)) {
-            todos.remove(id);
-            System.out.println("삭제되었습니다.");
+
+
+    public void remove(int displayIndex) {
+        int realIndex = displayIndex - 1;
+        if (isValidIndex(realIndex)) {
+            for (int i=0; i<todos.size(); i++) {
+                System.out.println((i+1)+"."+todos.get(i));
+        }
+            todos.remove(realIndex);
+            System.out.println("✅ 삭제되었습니다.");
         } else {
             System.out.println("❌ 잘못된 번호입니다.");
         }
@@ -66,6 +72,9 @@ public class TodoService {
             throw new IndexOutOfBoundsException("삭제할 수 없는 인덱스입니다: " + index);
         }
         todos.remove(index);
+    }
+    public boolean isEmpty() {
+        return todos == null || todos.isEmpty();
     }
 
 }

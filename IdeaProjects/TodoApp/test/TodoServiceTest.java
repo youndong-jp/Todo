@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,10 +14,9 @@ public class TodoServiceTest {
     }
     @Test
     public void testInvalidIndexThrowsException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            service.removeStrict(0);
-        });
+        assertThrows(IndexOutOfBoundsException.class, () -> service.removeStrict(0));
     }
+
     @Test
     public void testAddTodo() {
         service.add("복습하기","2025-12-14");

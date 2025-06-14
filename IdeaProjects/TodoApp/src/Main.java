@@ -16,7 +16,6 @@ public class Main {
                     String task = sc.nextLine();
                     System.out.print("마감일을 입력하세요 (yyyy-MM-dd) 또는 Enter: ");
                     String input = sc.nextLine();
-
                     service.add(task, input);
                     break;
 
@@ -27,19 +26,28 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("완료할 번호를 입력하세요.");
-                    int choice2 = sc.nextInt();
-                    sc.nextLine();
-                    service.markDone(choice2);
-                    break;
-
+                    if (service.isEmpty()) {
+                        System.out.println("❌ 완료 할 일이 없습니다.");
+                    }else {
+                        service.printAll();
+                        System.out.print("완료할 번호를 입력하세요.");
+                        int choice2 = sc.nextInt();
+                        sc.nextLine();
+                        service.markDone(choice2);
+                        break;
+                    }
                 case 4:
-                    System.out.println("삭제할 번호를 입력하세요.");
-                    int choice3 = sc.nextInt();
-                    sc.nextLine();
-                    service.remove(choice3);
-                    break;
-
+                    if (service.isEmpty()) {
+                    System.out.println("❌ 삭제할 일이 없습니다.");
+                    break; // 아무 일도 안 하고 메뉴로 돌아감
+                }else {
+                        service.printAll();
+                        System.out.print("삭제할 번호를 입력하세요.");
+                        int choice3 = sc.nextInt();
+                        sc.nextLine();
+                        service.remove(choice3);
+                        break;
+                    }
                 case 5:
                     TodoManager.saveTodosToFile(todos, "todos.json");
                     System.out.println("종료합니다.");
