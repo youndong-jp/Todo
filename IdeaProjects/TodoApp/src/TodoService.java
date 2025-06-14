@@ -27,21 +27,22 @@ public class TodoService {
         System.out.println("할 일이 추가되었습니다.");
     }
 
-    public void printAll(){
-        if(todos.isEmpty()) {
+    public void printAll() {
+        if (todos.isEmpty()) {
             System.out.println("오늘 할 일이 없습니다.");
-        }else{
-            for (int i=0; i<todos.size(); i++) {
-                System.out.println((i+1)+"."+todos.get(i));
+        } else {
+            for (int i = 0; i < todos.size(); i++) {
+                System.out.println((i + 1) + "." + todos.get(i));
             }
         }
     }
 
-    public void markDone(int id){
-        if(isValidIndex(id)){
-            todos.get(id).markDone();
+    public void markDone(int id) {
+        int realIndex = id - 1;
+        if (isValidIndex(realIndex)) {
+            todos.get(realIndex).markDone();
             System.out.println("✅ 완료되었습니다.");
-        }else{
+        } else {
             System.out.println("❌ 잘못된 번호입니다.");
         }
     }
@@ -50,9 +51,9 @@ public class TodoService {
     public void remove(int displayIndex) {
         int realIndex = displayIndex - 1;
         if (isValidIndex(realIndex)) {
-            for (int i=0; i<todos.size(); i++) {
-                System.out.println((i+1)+"."+todos.get(i));
-        }
+            for (int i = 0; i < todos.size(); i++) {
+                System.out.println((i + 1) + "." + todos.get(i));
+            }
             todos.remove(realIndex);
             System.out.println("✅ 삭제되었습니다.");
         } else {
@@ -60,21 +61,36 @@ public class TodoService {
         }
     }
 
-    public List<Todo> getTodos(){
+    public List<Todo> getTodos() {
         return todos;
     }
 
-    private boolean isValidIndex(int index){
+    private boolean isValidIndex(int index) {
         return index >= 0 && index < todos.size();
     }
+
     public void removeStrict(int index) {
         if (!isValidIndex(index)) {
             throw new IndexOutOfBoundsException("삭제할 수 없는 인덱스입니다: " + index);
         }
         todos.remove(index);
     }
+
     public boolean isEmpty() {
         return todos == null || todos.isEmpty();
+    }
+
+    public void printIncomplete() {
+        boolean hasIncomplete = false;
+        for (int i = 0; i < todos.size(); i++) {
+            if (!todos.get(i).isDone()) {
+                System.out.println((i + 1) + ". " + todos.get(i));
+                hasIncomplete = true;
+            }
+        }
+        if (!hasIncomplete) {
+            System.out.println("✅ 완료할 일이 없습니다.");
+        }
     }
 
 }

@@ -27,9 +27,9 @@ public class Main {
 
                 case 3:
                     if (service.isEmpty()) {
-                        System.out.println("❌ 완료 할 일이 없습니다.");
+                        System.out.println("❌ 할일이 없습니다.");
                     }else {
-                        service.printAll();
+                        service.printIncomplete();
                         System.out.print("완료할 번호를 입력하세요.");
                         int choice2 = sc.nextInt();
                         sc.nextLine();
