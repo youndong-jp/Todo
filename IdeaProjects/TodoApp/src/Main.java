@@ -12,10 +12,14 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.print("할일을 입력하세요 : ");
+                    System.out.print("할 일을 입력하세요: ");
                     String task = sc.nextLine();
-                    service.add(task);
+                    System.out.print("마감일을 입력하세요 (yyyy-MM-dd) 또는 Enter: ");
+                    String input = sc.nextLine();
+
+                    service.add(task, input);
                     break;
+
 
                 case 2:
                     System.out.println("오늘 할일 목록입니다.");

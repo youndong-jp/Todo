@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.List;
+import java.time.format.DateTimeParseException;
 
 public class TodoService {
     private List<Todo> todos;
@@ -8,10 +9,24 @@ public class TodoService {
         this.todos = todos;
     }
 
-    public void add(String task){
-        todos.add(new Todo(task, false, LocalDate.now()));
+    public void add(String task, String inputDate) {
+        LocalDate dueDate;
+
+        if (inputDate == null || inputDate.trim().isEmpty()) {
+            dueDate = LocalDate.now();  // 기본값
+        } else {
+            try {
+                dueDate = LocalDate.parse(inputDate);
+            } catch (DateTimeParseException e) {
+                System.out.println("⚠️ 마감일 형식이 잘못되었습니다. 오늘 날짜로 설정합니다.");
+                dueDate = LocalDate.now();
+            }
+        }
+
+        todos.add(new Todo(task, false, dueDate));
         System.out.println("할 일이 추가되었습니다.");
     }
+
     public void printAll(){
         if(todos.isEmpty()) {
             System.out.println("오늘 할 일이 없습니다.");
