@@ -10,10 +10,25 @@ public class Todo {
         this.isDone = isDone;
         this.dueDate = dueDate;
     }
+    public String getStatus() {
+        if (dueDate == null) return "";
+
+        LocalDate today = LocalDate.now();
+
+        if (dueDate.isBefore(today)) {
+            return "OVERDUE";
+        } else if (dueDate.isEqual(today)) {
+            return "D-DAY";
+        } else {
+            int daysLeft = today.until(dueDate).getDays();
+            return "D-" + daysLeft;
+        }
+    }
+
     @Override
     public String toString() {
         String checkbox = isDone ? "[x]" : "[]";
-        String due = dueDate != null ? "(마감일" + dueDate + ")" : "";
+        String due = dueDate != null ? "(마감일 " + dueDate + ","+ getStatus() + ")" : "";
         return checkbox +""+ task +due;
     }
     public String getTask() {

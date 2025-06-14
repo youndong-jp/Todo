@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,8 +34,8 @@ public class TodoManagerTest {
     public void testSaveAndLoadTodos() {
         // given
         ArrayList<Todo> todosToSave = new ArrayList<>();
-        todosToSave.add(new Todo("JUnit 복습", false));
-        todosToSave.add(new Todo("깃 정리", true));
+        todosToSave.add(new Todo("JUnit 복습", false, LocalDate.now()));
+        todosToSave.add(new Todo("깃 정리", true, LocalDate.now()));
 
         // when
         TodoManager.saveTodosToFile(todosToSave, testFilename);

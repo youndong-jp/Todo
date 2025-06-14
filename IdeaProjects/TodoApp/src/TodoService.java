@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.List;
 
 public class TodoService {
@@ -8,7 +9,7 @@ public class TodoService {
     }
 
     public void add(String task){
-        todos.add(new Todo(task, false));
+        todos.add(new Todo(task, false, LocalDate.now()));
         System.out.println("할 일이 추가되었습니다.");
     }
     public void printAll(){

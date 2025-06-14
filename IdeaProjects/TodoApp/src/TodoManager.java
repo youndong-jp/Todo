@@ -18,16 +18,16 @@ public class TodoManager {
             System.out.println("❌ 저장 실패: " + e.getMessage());
         }
     }
-    public static ArrayList<Todo> loadTodosFromFile(String filename) {
-        Gson gson = new Gson();
-        try (FileReader reader = new FileReader(filename)) {
-            Type type = new TypeToken<ArrayList<Todo>>() {}.getType();
-            ArrayList<Todo> todos = gson.fromJson(reader, type);
-            System.out.println("✅ 불러오기 완료");
-            return todos;
-        } catch (IOException e) {
-            System.out.println("❌ 불러오기 실패: " + e.getMessage());
-            return new ArrayList<>(); // 실패 시 빈 리스트 반환
+        public static ArrayList<Todo> loadTodosFromFile(String filename) {
+            Gson gson = new Gson();
+            try (FileReader reader = new FileReader(filename)) {
+                Type type = new TypeToken<ArrayList<Todo>>() {}.getType();
+                ArrayList<Todo> todos = gson.fromJson(reader, type);
+                System.out.println("✅ 불러오기 완료");
+                return (todos != null) ? todos : new ArrayList<>();
+            } catch (IOException e) {
+                System.out.println("❌ 불러오기 실패: " + e.getMessage());
+                return new ArrayList<>(); // 실패 시 빈 리스트 반환
+            }
         }
     }
-}
