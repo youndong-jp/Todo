@@ -2,32 +2,39 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 public class TodoManager {
-    public static void saveTodosToFile(ArrayList<Todo> todos, String filename) {
-        Gson gson = new Gson();
-        String json = gson.toJson(todos);
 
+    private static Gson buildGson() {
+        return new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .setPrettyPrinting()
+                .create();
+    }
+
+    public static void saveTodosToFile(List<Todo> todos, String filename) {
         try (FileWriter writer = new FileWriter(filename)) {
-            writer.write(json);
-            System.out.println("✅ 저장 완료: " + filename);
+            Gson gson = buildGson();
+            gson.toJson(todos, writer);
         } catch (IOException e) {
-            System.out.println("❌ 저장 실패: " + e.getMessage());
+            e.printStackTrace();
         }
     }
-        public static ArrayList<Todo> loadTodosFromFile(String filename) {
-            Gson gson = new Gson();
-            try (FileReader reader = new FileReader(filename)) {
-                Type type = new TypeToken<ArrayList<Todo>>() {}.getType();
-                ArrayList<Todo> todos = gson.fromJson(reader, type);
-                System.out.println("✅ 불러오기 완료");
-                return (todos != null) ? todos : new ArrayList<>();
-            } catch (IOException e) {
-                System.out.println("❌ 불러오기 실패: " + e.getMessage());
-                return new ArrayList<>(); // 실패 시 빈 리스트 반환
-            }
+
+    public static List<Todo> loadTodosFromFile(String filename) {
+        try (FileReader reader = new FileReader(filename)) {
+            Gson gson = buildGson();
+            Type type = new TypeToken<List<Todo>>() {}.getType();
+            List<Todo> todos = gson.fromJson(reader, type);
+            return (todos != null) ? todos : new ArrayList<>();
+        } catch (IOException e) {
+            return new ArrayList<>();
         }
     }
+}

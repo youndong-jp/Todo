@@ -1,9 +1,9 @@
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Todo> todos = TodoManager.loadTodosFromFile("todos.json");
+        List<Todo> todos = TodoManager.loadTodosFromFile("todos.json");
         TodoService service = new TodoService(todos);
 
         while (true) {

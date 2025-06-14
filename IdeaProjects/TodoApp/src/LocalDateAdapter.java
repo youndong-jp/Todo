@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class LocalDateAdapter implements JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
 
+
     @Override
     public JsonElement serialize(LocalDate date, Type type, JsonSerializationContext context) {
         return new JsonPrimitive(date.format(formatter)); // "2025-06-14" 같은 문자열로 저장
