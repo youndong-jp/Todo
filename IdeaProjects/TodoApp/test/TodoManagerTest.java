@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,13 +34,13 @@ public class TodoManagerTest {
     @Test
     public void testSaveAndLoadTodos() {
         // given
-        ArrayList<Todo> todosToSave = new ArrayList<>();
+        List<Todo> todosToSave = new ArrayList<>();
         todosToSave.add(new Todo("JUnit 복습", false, LocalDate.now()));
         todosToSave.add(new Todo("깃 정리", true, LocalDate.now()));
 
         // when
         TodoManager.saveTodosToFile(todosToSave, testFilename);
-        ArrayList<Todo> loadedTodos = TodoManager.loadTodosFromFile(testFilename);
+        List<Todo> loadedTodos = TodoManager.loadTodosFromFile(testFilename);
 
         // then
         assertEquals(2, loadedTodos.size());
@@ -56,7 +57,7 @@ public class TodoManagerTest {
         String missingFile = "not_exist_file.json";
 
         // when
-        ArrayList<Todo> result = TodoManager.loadTodosFromFile(missingFile);
+        List<Todo> result = TodoManager.loadTodosFromFile(missingFile);
 
         // then
         assertNotNull(result);
