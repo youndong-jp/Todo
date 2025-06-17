@@ -49,6 +49,14 @@ public class Main {
                         break;
                     }
                 case 5:
+                    if (service.isEmpty()) {
+                        System.out.println("할일이 없습니다.");
+                    }else {
+                        System.out.print("검색할 키워드 입력: ");
+                        String task1 = sc.nextLine();
+                        service.searchByKeyword(task1);
+                    }
+                case 6:
                     TodoManager.saveTodosToFile(todos, "todos.json");
                     System.out.println("종료합니다.");
                     return;
@@ -66,7 +74,8 @@ public class Main {
         System.out.println("2. 현재 할 일 확인");
         System.out.println("3. 할 일 완료 처리");
         System.out.println("4. 할 일 삭제");
-        System.out.println("5. 종료");
+        System.out.println("5. 검색");
+        System.out.println("6. 종료.");
         System.out.print("번호를 입력해 주세요: ");
     }
 
