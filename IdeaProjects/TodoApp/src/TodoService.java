@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.List;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 public class TodoService {
     private List<Todo> todos;
@@ -8,7 +9,7 @@ public class TodoService {
     public TodoService(List<Todo> todos) {
         this.todos = todos;
     }
-
+    //할일 추가
     public void add(String task, String inputDate) {
         LocalDate dueDate;
 
@@ -26,7 +27,7 @@ public class TodoService {
         todos.add(new Todo(task, false, dueDate));
         System.out.println("할 일이 추가되었습니다.");
     }
-
+    // 할일 출력
     public void printAll() {
         if (todos.isEmpty()) {
             System.out.println("오늘 할 일이 없습니다.");
@@ -36,7 +37,7 @@ public class TodoService {
             }
         }
     }
-
+    // 할일 완료
     public void markDone(int id) {
         int realIndex = id - 1;
         if (isValidIndex(realIndex)) {
@@ -47,7 +48,7 @@ public class TodoService {
         }
     }
 
-
+    // 할일 삭제
     public void remove(int displayIndex) {
         int realIndex = displayIndex - 1;
         if (isValidIndex(realIndex)) {
@@ -68,18 +69,18 @@ public class TodoService {
     private boolean isValidIndex(int index) {
         return index >= 0 && index < todos.size();
     }
-
+    //테스트 코드
     public void removeStrict(int index) {
         if (!isValidIndex(index)) {
             throw new IndexOutOfBoundsException("삭제할 수 없는 인덱스입니다: " + index);
         }
         todos.remove(index);
     }
-
+    // 할일 비었을때
     public boolean isEmpty() {
         return todos == null || todos.isEmpty();
     }
-
+    // 할일 완료 안된것만 출력
     public void printIncomplete() {
         boolean hasIncomplete = false;
         for (int i = 0; i < todos.size(); i++) {
@@ -92,5 +93,14 @@ public class TodoService {
             System.out.println("✅ 완료할 일이 없습니다.");
         }
     }
-
+    // 검색 기능 추가
+    public List<Todo> searchByKeyword(String keyword) {
+        List<Todo> result = new ArrayList<>();
+        for (Todo t : todos){
+            if (t.getTask().toLowerCase().contains(keyword.toLowerCase())){
+                result.add(t);
+            }
+        }
+        return result;
+    }
 }

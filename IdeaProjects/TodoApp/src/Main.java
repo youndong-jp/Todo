@@ -39,7 +39,7 @@ public class Main {
                 case 4:
                     if (service.isEmpty()) {
                     System.out.println("❌ 삭제할 일이 없습니다.");
-                    break; // 아무 일도 안 하고 메뉴로 돌아감
+                    break;
                 }else {
                         service.printAll();
                         System.out.print("삭제할 번호를 입력하세요.");
