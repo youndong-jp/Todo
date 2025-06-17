@@ -103,4 +103,15 @@ public class TodoService {
         }
         return result;
     }
+    //검색 결과 출력 메소드
+    public void printSearchResult(String Keyword){
+        List<Todo> result = searchByKeyword(Keyword);
+        if (result.isEmpty()) {
+            System.out.println("검색된 일이 없습니다");
+        }else{
+            for (Todo t : result){
+                System.out.println(t);
+            }
+        }
+    }
 }
