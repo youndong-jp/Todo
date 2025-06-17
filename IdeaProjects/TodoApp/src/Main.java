@@ -54,8 +54,8 @@ public class Main {
                     }else {
                         System.out.print("검색할 키워드 입력: ");
                         String task1 = sc.nextLine();
-                        service.searchByKeyword(task1);
-                    }
+                        service.printSearchResult(task1);
+                    }break;
                 case 6:
                     TodoManager.saveTodosToFile(todos, "todos.json");
                     System.out.println("종료합니다.");
