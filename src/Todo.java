@@ -4,10 +4,12 @@ public class Todo {
     private String task; // 할 일
     private boolean isDone;// 끝난 일
     private LocalDate dueDate;
+    private String category;
 
-    public Todo(String task,boolean isDone, LocalDate dueDate) {
+    public Todo(String task,boolean isDone,String category ,LocalDate dueDate) {
         this.task = task;
         this.isDone = isDone;
+        this.category = category;
         this.dueDate = dueDate;
     }
     public String getStatus() {
