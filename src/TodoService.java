@@ -10,7 +10,7 @@ public class TodoService {
         this.todos = todos;
     }
     //할일 추가
-    public void add(String task, String inputDate) {
+    public void add(String task,String category,String inputDate) {
         LocalDate dueDate;
 
         if (inputDate == null || inputDate.trim().isEmpty()) {
@@ -23,8 +23,11 @@ public class TodoService {
                 dueDate = LocalDate.now();
             }
         }
+        if (category == null || category.trim().isEmpty()) {
+            category = "기타";
+        }
 
-        todos.add(new Todo(task, false, dueDate));
+        todos.add(new Todo(task, false, category, dueDate));
         System.out.println("할 일이 추가되었습니다.");
     }
     // 할일 출력
