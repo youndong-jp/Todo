@@ -14,9 +14,12 @@ public class Main {
                 case 1:
                     System.out.print("할 일을 입력하세요: ");
                     String task = sc.nextLine();
+                    System.out.println("카테고리를 입력하세요: ");
+                    String category = sc.nextLine();
                     System.out.print("마감일을 입력하세요 (yyyy-MM-dd) 또는 Enter: ");
-                    String input = sc.nextLine();
-                    service.add(task, input);
+                    String date = sc.nextLine();
+                    sc.close();
+                    service.add(task,category,date);
                     break;
 
 
