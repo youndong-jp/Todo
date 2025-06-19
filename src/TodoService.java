@@ -10,8 +10,26 @@ public class TodoService {
         this.todos = todos;
     }
     //할일 추가
+    public void add(String task,String category,String inputDate) {
+        LocalDate dueDate;
 
+        if (inputDate == null || inputDate.trim().isEmpty()) {
+            dueDate = LocalDate.now();  // 기본값
+        } else {
+            try {
+                dueDate = LocalDate.parse(inputDate);
+            } catch (DateTimeParseException e) {
+                System.out.println("⚠️ 마감일 형식이 잘못되었습니다. 오늘 날짜로 설정합니다.");
+                dueDate = LocalDate.now();
+            }
+        }
+        if (category == null || category.trim().isEmpty()) {
+            category = "기타";
+        }
 
+        todos.add(new Todo(task, false, category, dueDate));
+        System.out.println("할 일이 추가되었습니다.");
+    }
     // 할일 출력
     public void printAll() {
         if (todos.isEmpty()) {
