@@ -5,7 +5,7 @@ public class Todo {
     private boolean isDone;// 끝난 일
     private LocalDate dueDate;
 
-    public Todo(String task,boolean isDone,LocalDate dueDate) {
+    public Todo(String task,boolean isDone, LocalDate dueDate) {
         this.task = task;
         this.isDone = isDone;
         this.dueDate = dueDate;
