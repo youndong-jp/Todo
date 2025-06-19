@@ -25,6 +25,8 @@ public class TodoTest {
     @Test
     public void testNullPointerException(){
         Todo todo = null;
-        assertThrows(NullPointerException.class, () -> {});
+        assertThrows(NullPointerException.class, () -> {
+            todo.getTask();
+        });
     }
 }
