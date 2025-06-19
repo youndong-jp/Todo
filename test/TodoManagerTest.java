@@ -35,8 +35,8 @@ public class TodoManagerTest {
     public void testSaveAndLoadTodos() {
         // given
         List<Todo> todosToSave = new ArrayList<>();
-        todosToSave.add(new Todo("JUnit 복습", false, LocalDate.now()));
-        todosToSave.add(new Todo("깃 정리", true, LocalDate.now()));
+        todosToSave.add(new Todo("JUnit 복습", false,"기타", LocalDate.now()));
+        todosToSave.add(new Todo("깃 정리", true,"기타", LocalDate.now()));
 
         // when
         TodoManager.saveTodosToFile(todosToSave, testFilename);
@@ -46,9 +46,13 @@ public class TodoManagerTest {
         assertEquals(2, loadedTodos.size());
         assertEquals("JUnit 복습", loadedTodos.get(0).getTask());
         assertFalse(loadedTodos.get(0).isDone());
+        assertEquals("기타", loadedTodos.get(0).getCategory());
+        assertNotEquals(LocalDate.of(2024,11,14), loadedTodos.get(1).getDueDate());
 
         assertEquals("깃 정리", loadedTodos.get(1).getTask());
         assertTrue(loadedTodos.get(1).isDone());
+        assertEquals("기타", loadedTodos.get(1).getCategory());
+        assertNotEquals(LocalDate.of(2024,11,14), loadedTodos.get(1).getDueDate());
     }
 
     @Test
