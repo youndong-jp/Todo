@@ -31,7 +31,7 @@ public class Todo {
     public String toString() {
         String checkbox = isDone ? "[x]" : "[]";
         String due = dueDate != null ? "(마감일 " + dueDate + ","+ getStatus() + ")" : "";
-        return checkbox +""+ task +due;
+        return checkbox +""+ task +"("+category+")" +due;
     }
     public String getTask() {
         return task;
