@@ -31,14 +31,14 @@ public class TodoServiceTest {
     @Test
     public void testMarkDone() {
         service.add("청소하기","기타","2025-12-14");
-        service.markDone(0);
+        service.markDone(1);
         assertTrue(service.getTodos().get(0).isDone());
     }
 
     @Test
     public void testRemoveTodo() {
         service.add("휴식","기타","2025-12-14");
-        service.remove(0);
+        service.remove(1);
         assertEquals(0, service.getTodos().size());
     }
 
