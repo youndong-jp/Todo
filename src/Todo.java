@@ -43,4 +43,10 @@ public class Todo {
     public boolean isDone() {
         return isDone;
     }
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+    public String getCategory() {
+        return category;
+    }
 }
