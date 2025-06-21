@@ -65,9 +65,9 @@ public class Main {
                 case 7:
                     TodoManager.exportCsv(todos, "todos.csv");
                     break;
-                    case 8:
-                        service.undoDelete(todos);
-                        break;
+                case 8:
+                    service.undoDelete(todos);
+                    break;
 
                 default:
                     System.out.println("잘못된 입력입니다.");
