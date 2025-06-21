@@ -2,7 +2,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -66,5 +68,30 @@ public class TodoManagerTest {
         // then
         assertNotNull(result);
         assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testExportCsvCreateValidFile() {
+        List<Todo> todos = new ArrayList<>();
+        todos.add(new Todo("JUnit 복습", false,"기타", LocalDate.now()));
+        String filename = "test_todos.csv";
+
+        TodoManager.exportCsv(todos, filename);
+
+        File file = new File(filename);
+        assertTrue(file.exists());
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(filename))){
+            String header = reader.readLine();
+            String data = reader.readLine();
+
+            assertEquals("ID,isDone,Task(Category),DueDate", header);
+            assertTrue(data.contains("JUnit 복습"));
+            assertTrue(data.contains("기타"));
+            assertTrue(data.contains("[]"));
+        }catch(Exception e){
+            fail("파일 읽기 실패" + e.getMessage());
+        }
+
     }
 }
