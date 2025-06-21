@@ -71,7 +71,7 @@ public class TodoService {
             if(!deleteTodos.isEmpty()){
                 Todo restored = deleteTodos.pop();
                 todos.add(restored);
-                System.out.println("복구완료"+restored.getTask());
+                System.out.println("복구완료" + "\n"+ restored);
             }else{
                 System.out.println("삭제한 할일이 없습니다");
             }
