@@ -65,6 +65,9 @@ public class Main {
                 case 7:
                     TodoManager.exportCsv(todos, "todos.csv");
                     break;
+                    case 8:
+                        service.undoDelete(todos);
+                        break;
 
                 default:
                     System.out.println("잘못된 입력입니다.");
@@ -82,6 +85,7 @@ public class Main {
         System.out.println("5. 검색");
         System.out.println("6. 종료.");
         System.out.println("7.csv 내보내기");
+        System.out.println("8.삭제취소");
         System.out.print("번호를 입력해 주세요: ");
     }
 
