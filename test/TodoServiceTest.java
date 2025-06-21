@@ -51,7 +51,7 @@ public class TodoServiceTest {
         assertEquals(0, service.getTodos().size()); // 여전히 아무것도 없어야 함
     }
     @Test
-    public void testundoDelete() {
+    public void testUndoDelete() {
         service.add("휴식","기타","2025-12-14");
         service.remove(1);
         assertEquals(0, service.getTodos().size());
