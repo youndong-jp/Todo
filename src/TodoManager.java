@@ -37,4 +37,19 @@ public class TodoManager {
             return new ArrayList<>();
         }
     }
+
+    public static void exportCsv(List<Todo>todos, String filename) {
+        try(FileWriter writer = new FileWriter(filename)){
+            writer.append("ID,Task,DueDate,IsDone\n");
+            for (int i=0;i<todos.size();i++) {
+                Todo todo = todos.get(i);
+                writer.append(String.valueOf(i+1)).append(",");
+                writer.append(todo.getTask()).append("("+todo.getCategory()+")"+",");
+                writer.append(todo.getDueDate().toString()).append(",");
+                writer.append(String.valueOf(todo.isDone())).append("\n");}
+            System.out.println("todos.csv 파일");
+            } catch (IOException e) {
+            System.out.println("CSV 저장  오류 발생 "+e.getMessage());
+        }
+    }
 }
