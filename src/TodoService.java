@@ -2,10 +2,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.format.DateTimeParseException;
 import java.util.stream.Collectors;
+import java.util.Stack;
 
 public class TodoService {
     private List<Todo> todos;
-
+    private Stack<Todo> deleteTodos = new Stack<>();
     public TodoService(List<Todo> todos) {
         this.todos = todos;
     }
@@ -58,13 +59,22 @@ public class TodoService {
             for (int i = 0; i < todos.size(); i++) {
                 System.out.println((i + 1) + "." + todos.get(i));
             }
+            deleteTodos.push(todos.get(realIndex));
             todos.remove(realIndex);
             System.out.println("✅ 삭제되었습니다.");
         } else {
             System.out.println("❌ 잘못된 번호입니다.");
         }
     }
+    //되돌리기 기능
+    public void undoDelete(List<Todo>todos) {
+            if(!deleteTodos.isEmpty()){
+                Todo restored = deleteTodos.pop();
+                todos.add(restored);
+                System.out.println("복구완료"+restored.getTask());
+            }
 
+}
     public List<Todo> getTodos() {
         return todos;
     }
