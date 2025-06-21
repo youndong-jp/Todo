@@ -1,12 +1,10 @@
 import java.time.LocalDate;
-import java.util.Stack;
 
 public class Todo {
     private String task; // 할 일
     private boolean isDone;// 끝난 일
     private LocalDate dueDate;
     private String category;
-    private static Stack<Todo> deletedTodos = new Stack<>();
 
     public Todo(String task,boolean isDone,String category ,LocalDate dueDate) {
         this.task = task;
