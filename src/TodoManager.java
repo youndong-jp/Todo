@@ -40,7 +40,7 @@ public class TodoManager {
 
     public static void exportCsv(List<Todo>todos, String filename) {
         try(FileWriter writer = new FileWriter(filename)){
-            writer.append("ID,Task(Category),DueDate,IsDone\n");
+            writer.append("ID,isDone,Task(Category),DueDate\n");
             for (int i=0;i<todos.size();i++) {
                 Todo todo = todos.get(i);
                 writer.append(String.valueOf(i+1)).append(",");
