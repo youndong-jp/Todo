@@ -7,6 +7,9 @@ import java.util.Stack;
 public class TodoService {
     private List<Todo> todos;
     private Stack<Todo> deleteTodos = new Stack<>();
+    private void autoSave(){
+        TodoManager.saveTodosToFile(todos, "todos.json");
+    }
     public TodoService(List<Todo> todos) {
         this.todos = todos;
     }
@@ -29,6 +32,7 @@ public class TodoService {
         }
 
         todos.add(new Todo(task, false, category, dueDate));
+        autoSave();
         System.out.println("할 일이 추가되었습니다.");
     }
     // 할일 출력
@@ -46,6 +50,7 @@ public class TodoService {
         int realIndex = id - 1;
         if (isValidIndex(realIndex)) {
             todos.get(realIndex).markDone();
+            autoSave();
             System.out.println("✅ 완료되었습니다.");
         } else {
             System.out.println("❌ 잘못된 번호입니다.");
@@ -61,6 +66,7 @@ public class TodoService {
             }
             deleteTodos.push(todos.get(realIndex));
             todos.remove(realIndex);
+            autoSave();
             System.out.println("✅ 삭제되었습니다.");
         } else {
             System.out.println("❌ 잘못된 번호입니다.");
@@ -71,6 +77,7 @@ public class TodoService {
             if(!deleteTodos.isEmpty()){
                 Todo restored = deleteTodos.pop();
                 todos.add(restored);
+                autoSave();
                 System.out.println("복구완료" + "\n"+ restored);
             }else{
                 System.out.println("삭제한 할일이 없습니다");
