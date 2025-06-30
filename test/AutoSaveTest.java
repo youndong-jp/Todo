@@ -15,7 +15,7 @@ public class AutoSaveTest {
     @BeforeEach
     void setup() {
         todos = new ArrayList<>();
-        service = new TodoService(todos);
+        service = new TodoService(todos,FILENAME);
         new File(FILENAME).delete();
     }
     @Test

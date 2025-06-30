@@ -6,12 +6,14 @@ import java.util.Stack;
 
 public class TodoService {
     private List<Todo> todos;
+    private final String filename;
     private Stack<Todo> deleteTodos = new Stack<>();
     private void autoSave(){
-        TodoManager.saveTodosToFile(todos, "todos.json");
+        TodoManager.saveTodosToFile(todos, filename);
     }
-    public TodoService(List<Todo> todos) {
+    public TodoService(List<Todo> todos,String filename) {
         this.todos = todos;
+        this.filename = filename;
     }
     //할일 추가
     public void add(String task,String category,String inputDate) {

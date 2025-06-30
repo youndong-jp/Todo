@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Todo> todos = TodoManager.loadTodosFromFile("todos.json");
-        TodoService service = new TodoService(todos);
+        TodoService service = new TodoService(todos,"todos.json");
 
         while (true) {
             printMenu();
