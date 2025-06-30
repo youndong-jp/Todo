@@ -13,7 +13,6 @@ public class TodoServiceTest {
     @BeforeEach
     public void setUp() {
         ArrayList<Todo> todos = new ArrayList<>();
-        Stack<Todo> deleteTodos = new Stack<>();
         service = new TodoService(todos);
     }
     @Test
