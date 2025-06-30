@@ -37,6 +37,7 @@ java-todo-console/
 │   ├── TodoManager.java
 │   └── TodoService.java
 ├── test/
+│   ├── AutoSaveTest.java
 │   ├── TodoManagerTest.java
 │   ├── TodoServiceTest.java
 │   └── TodoTest.java
@@ -66,7 +67,7 @@ java-todo-console/
 ## 🧪 테스트 항목
 
 - Todo 객체 생성, 완료 처리
-- TodoService: 추가, 삭제, 완료 로직
+- TodoService: 추가, 삭제, 완료 로직,자동저장
 - TodoManager: JSON 입출력
 - 예외 처리: 잘못된 입력, 파일 없음
 
