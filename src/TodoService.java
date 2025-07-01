@@ -1,8 +1,10 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.time.format.DateTimeParseException;
 import java.util.stream.Collectors;
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 public class TodoService {
     private List<Todo> todos;
@@ -42,9 +44,8 @@ public class TodoService {
         if (todos.isEmpty()) {
             System.out.println("오늘 할 일이 없습니다.");
         } else {
-            for (int i = 0; i < todos.size(); i++) {
-                System.out.println((i + 1) + "." + todos.get(i));
-            }
+            IntStream.range(0, todos.size())
+                    .forEach(i -> System.out.println((i+1)+"."+todos.get(i)));
         }
     }
     // 할일 완료
@@ -63,9 +64,8 @@ public class TodoService {
     public void remove(int displayIndex) {
         int realIndex = displayIndex - 1;
         if (isValidIndex(realIndex)) {
-            for (int i = 0; i < todos.size(); i++) {
-                System.out.println((i + 1) + "." + todos.get(i));
-            }
+            IntStream.range(0, todos.size())
+                    .forEach(i -> System.out.println((i+1)+"."+todos.get(i)));
             deleteTodos.push(todos.get(realIndex));
             todos.remove(realIndex);
             autoSave();
@@ -107,14 +107,14 @@ public class TodoService {
     // 할일 완료 안된것만 출력
     public void printIncomplete() {
         boolean hasIncomplete = false;
-        for (int i = 0; i < todos.size(); i++) {
-            if (!todos.get(i).isDone()) {
-                System.out.println((i + 1) + ". " + todos.get(i));
-                hasIncomplete = true;
-            }
-        }
-        if (!hasIncomplete) {
+        List<Integer> incompleteTodos = IntStream.range(0, todos.size())
+                .filter(i -> !todos.get(i).isDone())
+                .boxed()
+                .collect(Collectors.toList());
+        if (incompleteTodos.isEmpty()) {
             System.out.println("✅ 완료할 일이 없습니다.");
+        }else {
+            incompleteTodos.forEach(i -> System.out.println((i + 1) + "." + todos.get(i)));
         }
     }
     // 검색 기능 추가
