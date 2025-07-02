@@ -131,6 +131,9 @@ public class TodoService {
             }
         }
         public void printCategoryState(){
+            if(todos.isEmpty()){
+                System.out.println("<할 일이 없습니다");
+            }else{
             Map<String, Long> stats = todos.stream()
                     .collect(Collectors.groupingBy(
                             Todo::getCategory,
@@ -140,4 +143,5 @@ public class TodoService {
             stats.forEach((category, count) ->
                     System.out.println("-"+category + ": " + count+"개"));
         }
+    }
 }
