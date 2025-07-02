@@ -1,9 +1,7 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.time.format.DateTimeParseException;
 import java.util.stream.Collectors;
-import java.util.Stack;
 import java.util.stream.IntStream;
 
 public class TodoService {
@@ -131,5 +129,15 @@ public class TodoService {
         }else{
             result.forEach(System.out::println);
             }
+        }
+        public void printCategoryState(){
+            Map<String, Long> stats = todos.stream()
+                    .collect(Collectors.groupingBy(
+                            Todo::getCategory,
+                            Collectors.counting()
+                    ));
+            System.out.println("카테고리별 통계.");
+            stats.forEach((category, count) ->
+                    System.out.println("-"+category + ": " + count+"개"));
         }
 }
