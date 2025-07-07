@@ -30,7 +30,7 @@ public String handleRequest(String method,String url){
             return service.markDone(id);
         } else if(method.equals("DELETE")&&url.startsWith("/todos/")){
             int id = extractId(url);
-            return service.deleteTodo();
+            return service.deleteTodo(id);
         }
 
         return "404 Not Found";
