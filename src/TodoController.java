@@ -25,7 +25,7 @@ public String handleRequest(String method,String url){
         } else if(method.equals("PUT")&&url.startsWith("/todos/")){
             int id = extractId(url);
             return service.updateTodo(id);
-        } else if(method.equals("PATCH")&&url.startsWith("/todos/")){
+        } else if(method.equals("PATCH")&&url.startsWith("/todos/")&&url.endsWith("/done")){
             int id = extractId(url);
             return service.markDone(id);
         } else if(method.equals("DELETE")&&url.startsWith("/todos/")){
