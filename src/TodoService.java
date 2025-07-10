@@ -7,7 +7,7 @@ public class TodoService{
         this.repository = repository;
     }
 
-    public void addTodo(Todo todo){
+    public void createTodo(Todo todo){
         repository.save(todo);
     }
     public List<Todo>getAllTodos(){
@@ -19,7 +19,7 @@ public class TodoService{
     public void updateTodo(int id ,Todo newTodo){
         repository.update(id, newTodo);
     }
-    public Todo getTodo(int id){
+    public Todo getTodoById(int id){
         return repository.findById(id);
     }
 }
