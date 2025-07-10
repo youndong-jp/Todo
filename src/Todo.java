@@ -1,18 +1,24 @@
 import java.time.LocalDate;
 
-public class Todo {
-    private String task; // 할 일
-    private boolean isDone;// 끝난 일
-    private LocalDate dueDate;
-    private String category;
+    public class Todo {
+        private String task; // 할 일
+        private boolean isDone;// 끝난 일
+        private LocalDate dueDate;
+        private String category;
+        private int id;
+        public static int nextId =1;
 
-    public Todo(String task,boolean isDone,String category ,LocalDate dueDate) {
-        this.task = task;
-        this.isDone = isDone;
-        this.category = category;
-        this.dueDate = dueDate;
-    }
-    public String getStatus() {
+        public Todo(String task,boolean isDone,String category ,LocalDate dueDate) {
+            this.task = task;
+            this.isDone = isDone;
+            this.category = category;
+            this.dueDate = dueDate;
+            this.id = nextId++;
+        }
+        public int getId() {
+            return id;
+        }
+        public String getStatus() {
         if (dueDate == null) return "";
 
         LocalDate today = LocalDate.now();
