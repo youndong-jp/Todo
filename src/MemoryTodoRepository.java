@@ -6,7 +6,6 @@ public class MemoryTodoRepository implements TodoRepository {
     public List<Todo>findAll() {
         return new ArrayList<>(todos);
     }
-
     @Override
     public Todo findById(int id) {
         return todos.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
